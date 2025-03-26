@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
     if (weight_method == INVERSE_BITWISE) {
         set_weight_struct(&(extra.weights0), weight_method, weight_types, num_weights);
         set_weight_struct(&(extra.weights1), weight_method, weight_types, num_weights);
-        if (Npw) set_pair_weight_struct(&(extra.pair_weight), pair_weights[0], pair_weights[1], Npw, 1, 0.);
+        if (Npw) set_pair_weight_struct(&(extra.pair_weight), pair_weights[0], pair_weights[1], Npw, 1, 0., NULL, 0);
     }
 
     /* If you want to change the bin refine factors */
