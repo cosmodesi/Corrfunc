@@ -88,6 +88,8 @@ Compilation Notes
 
 - Default compiler on MAC is set to ``clang``, if you want to specify a different compiler, you will have to call ``make CC=yourcompiler``,  ``make install CC=yourcompiler``, ``make tests CC=yourcompiler`` etc. If you want to permanently change the default compiler, then please edit the `common.mk <common.mk>`__ file in the base directory.
 
+- If you get the GPU support problem (``Error: To compile with GPU support define "CUDA_HOME" Else set "USE_GPU=0"``), it is probably easiest to define either via an ``export`` statement (``export CUDA_HOME=...`` or ``export USE_GPU=0``) in the shell before running ``make``.
+
 - If you are directly using ``python -m pip install . [--user] --install-option="CC=yourcompiler"``, please run a ``make distclean`` beforehand (especially if switching compilers)
 
 - Please note that Corrfunc is compiling with optimizations for the architecture
@@ -124,7 +126,16 @@ with the ``Installation`` label.
 Method 2: pip installation
 --------------------------
 
-The Python package is directly installable via ``python -m pip install Corrfunc``. However, in that case you will lose the ability to recompile the code.  This usually fine if you are only using the Python interface and are on a single machine, like a laptop.  For usage on a cluster or other environment with multiple CPU architectures, you may find it more useful to use the Source Installation method above in case you need to compile for a different architecture later.
+The Python package is directly installable via
+
+::
+
+   $ python -m pip install Corrfunc
+
+
+However, in that case, you will lose the ability to recompile the code. This is usually fine if you are only using the Python interface and are on a single machine, like a laptop.  For usage on a cluster or other environment with multiple CPU architectures, you may find it more useful to use the Source Installation method above in case you need to compile for a different architecture later.
+
+If you get the GPU support problem (``Error: To compile with GPU support define "CUDA_HOME" Else set "USE_GPU=0"``), it is probably easiest to prepend either definition to the command: ``CUDA_HOME=... python -m pip install Corrfunc`` or ``USE_GPU=0 python -m pip install Corrfunc``.
 
 Testing a pip-installed Corrfunc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
