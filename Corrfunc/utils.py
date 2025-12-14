@@ -606,7 +606,7 @@ def convert_to_native_endian(array, warn=False):
         return array
 
     import numpy as np
-    array = np.array(array, order='C', copy=False)
+    array = np.asarray(array, order='C')
 
     system_is_little_endian = (sys.byteorder == 'little')
     array_is_little_endian = (array.dtype.byteorder == '<')
