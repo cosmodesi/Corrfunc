@@ -612,9 +612,9 @@ def convert_to_native_endian(array, warn=False):
     array_is_little_endian = (array.dtype.byteorder == '<')
     if (array_is_little_endian != system_is_little_endian) and not (array.dtype.byteorder == '='):
         if warn:
-            warnings.warn("One or more input array has non-native endianness!  A copy will"\
+            warnings.warn("One or more input array has non-native endianness! A copy will"\
                       " be made with the correct endianness.")
-        array = array.byteswap().newbyteorder()
+        array = np.array(array, order='C')
     return array
 
 
