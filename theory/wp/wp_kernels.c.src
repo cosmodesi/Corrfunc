@@ -171,9 +171,9 @@ static inline int wp_avx512_intrinsics_DOUBLE(DOUBLE *x0, DOUBLE *y0, DOUBLE *z0
             const AVX512_FLOATS m_y1 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, localy1);
             const AVX512_FLOATS m_z1 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, localz1);
 
-            union int16 union_rpbin;
-            union float16 union_mDperp;
-            union float16_weights union_mweight;
+            union avx512int union_rpbin;
+            union avx512float union_mDperp;
+            union avx512float_weights union_mweight;
 
             union_rpbin.m_ibin = AVX512_SETZERO_INT();
             union_mDperp.m_Dperp = AVX512_SETZERO_FLOAT();
@@ -481,9 +481,9 @@ static inline int wp_avx2_intrinsics_DOUBLE(DOUBLE *x0, DOUBLE *y0, DOUBLE *z0, 
             const AVX2_FLOATS m_ypos    = AVX2_SET_FLOAT(ypos);
             const AVX2_FLOATS m_zpos    = AVX2_SET_FLOAT(zpos);
 
-            union int8 union_rpbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_rpbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             const AVX2_FLOATS m_x1 = AVX2_LOAD_FLOATS_UNALIGNED(localx1);
             const AVX2_FLOATS m_y1 = AVX2_LOAD_FLOATS_UNALIGNED(localy1);
@@ -855,9 +855,9 @@ static inline int wp_avx_intrinsics_DOUBLE(DOUBLE *x0, DOUBLE *y0, DOUBLE *z0, c
             const AVX_FLOATS m_ypos    = AVX_SET_FLOAT(ypos);
             const AVX_FLOATS m_zpos    = AVX_SET_FLOAT(zpos);
 
-            union int8 union_rpbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_rpbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             const AVX_FLOATS m_x1 = AVX_LOAD_FLOATS_UNALIGNED(localx1);
             const AVX_FLOATS m_y1 = AVX_LOAD_FLOATS_UNALIGNED(localy1);
@@ -1257,9 +1257,9 @@ static inline int wp_sse_intrinsics_DOUBLE(DOUBLE *x0, DOUBLE *y0, DOUBLE *z0, c
                 local_w1.weights[w] += SSE_NVEC;
             }
 
-            union int4 union_rpbin;
-            union float4 union_mDperp;
-            union float4_weights union_mweight;
+            union sseint union_rpbin;
+            union ssefloat union_mDperp;
+            union ssefloat_weights union_mweight;
 
             const SSE_FLOATS m_pimax = SSE_SET_FLOAT(pimax);
             const SSE_FLOATS m_sqr_rpmax = SSE_SET_FLOAT(sqr_rpmax);

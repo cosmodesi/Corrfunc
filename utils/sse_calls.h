@@ -177,17 +177,17 @@ extern "C" {
   }
 #endif
 
-  union int4 {
+  union sseint {
     SSE_INTS m_ibin;
     int ibin[SSE_NVEC];
   };
 
-  union float4{
+  union ssefloat{
     SSE_FLOATS m_Dperp;
     DOUBLE Dperp[SSE_NVEC];
   };
 
-  union float4_weights{
+  union ssefloat_weights{
     SSE_FLOATS m_weights;
     DOUBLE weights[SSE_NVEC];
   };

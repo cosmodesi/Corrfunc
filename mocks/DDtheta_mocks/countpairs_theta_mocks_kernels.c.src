@@ -409,9 +409,9 @@ static inline int countpairs_theta_mocks_sse_intrinsics_DOUBLE(const int64_t N0,
         const SSE_FLOATS m_y1 = SSE_SET_FLOAT(ypos);
         const SSE_FLOATS m_z1 = SSE_SET_FLOAT(zpos);
         for(;j<=(N1-SSE_NVEC);j+=SSE_NVEC){
-            union int4 union_rpbin;
-            union float4 union_mDperp;
-            union float4_weights union_mweight;
+            union sseint union_rpbin;
+            union ssefloat union_mDperp;
+            union ssefloat_weights union_mweight;
 
             const SSE_FLOATS m_costhetamax = SSE_SET_FLOAT(costhetamax);
             const SSE_FLOATS m_costhetamin = SSE_SET_FLOAT(costhetamin);
@@ -751,9 +751,9 @@ static inline int countpairs_theta_mocks_avx_intrinsics_DOUBLE(const int64_t N0,
         const AVX_FLOATS m_y1 = AVX_SET_FLOAT(ypos);
         const AVX_FLOATS m_z1 = AVX_SET_FLOAT(zpos);
         for(;j<=(N1-AVX_NVEC);j+=AVX_NVEC){
-            union int8 union_rpbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_rpbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             const AVX_FLOATS m_costhetamax = AVX_SET_FLOAT(costhetamax);
             const AVX_FLOATS m_costhetamin = AVX_SET_FLOAT(costhetamin);
@@ -1096,9 +1096,9 @@ static inline int countpairs_theta_mocks_avx512_intrinsics_DOUBLE(const int64_t 
             const AVX512_FLOATS m_y1 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, localy1);
             const AVX512_FLOATS m_z1 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, localz1);
 
-            union int16 union_rpbin;
-            union float16 union_mDperp;
-            union float16_weights union_mweight;
+            union avx512int union_rpbin;
+            union avx512float union_mDperp;
+            union avx512float_weights union_mweight;
 
             const AVX512_FLOATS m_costhetamax = AVX512_SET_FLOAT(costhetamax);
             const AVX512_FLOATS m_costhetamin = AVX512_SET_FLOAT(costhetamin);

@@ -215,9 +215,9 @@ static inline int countpairs_rp_pi_mocks_avx512_intrinsics_DOUBLE(const int64_t 
                 m_yhat1 = AVX512_LOAD_FLOATS_UNALIGNED(yhat1 + j);
                 m_zhat1 = AVX512_LOAD_FLOATS_UNALIGNED(zhat1 + j);
             }
-            union int16 union_finalbin;
-            union float16 union_mDperp;
-            union float16_weights union_mweight;
+            union avx512int union_finalbin;
+            union avx512float union_mDperp;
+            union avx512float_weights union_mweight;
 
             union_finalbin.m_ibin = AVX512_SETZERO_INT();
             union_mDperp.m_Dperp = AVX512_SETZERO_FLOAT();
@@ -587,9 +587,9 @@ static inline int countpairs_rp_pi_mocks_avx_intrinsics_DOUBLE(const int64_t N0,
                 m_yhat1 = AVX_LOAD_FLOATS_UNALIGNED(yhat1 + j);
                 m_zhat1 = AVX_LOAD_FLOATS_UNALIGNED(zhat1 + j);
             }
-            union int8 union_finalbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_finalbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             localx1 += AVX_NVEC;
             localy1 += AVX_NVEC;
@@ -1084,9 +1084,9 @@ static inline int countpairs_rp_pi_mocks_sse_intrinsics_DOUBLE(const int64_t N0,
                 m_zhat1 = SSE_LOAD_FLOATS_UNALIGNED(zhat1 + j);
             }
 
-            union int4 union_finalbin;
-            union float4 union_mDperp;
-            union float4_weights union_mweight;
+            union sseint union_finalbin;
+            union ssefloat union_mDperp;
+            union ssefloat_weights union_mweight;
 
             localx1 += SSE_NVEC;
             localy1 += SSE_NVEC;

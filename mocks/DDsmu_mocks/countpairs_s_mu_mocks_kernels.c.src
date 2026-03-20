@@ -21,6 +21,7 @@
 #include "weight_functions_DOUBLE.h"
 
 #ifdef GPU
+#include <cuda_runtime.h>
 #include "countpairs_s_mu_mocks_gpu.h"
 #endif
 
@@ -227,9 +228,9 @@ static inline int countpairs_s_mu_mocks_avx512_intrinsics_DOUBLE(const int64_t N
                 local_w1.weights[w] += AVX512_NVEC;
             }
 
-            union int16 union_finalbin;
-            union float16 union_msep;
-            union float16_weights union_mweight;
+            union avx512int union_finalbin;
+            union avx512float union_msep;
+            union avx512float_weights union_mweight;
 
             const AVX512_FLOATS m_perpx = AVX512_MASKZ_SUBTRACT_FLOATS(m_mask_left, m_x2, m_xpos);
             const AVX512_FLOATS m_perpy = AVX512_MASKZ_SUBTRACT_FLOATS(m_mask_left, m_y2, m_ypos);
@@ -595,9 +596,9 @@ static inline int countpairs_s_mu_mocks_avx_intrinsics_DOUBLE(const int64_t N0, 
                 local_w1.weights[w] += AVX_NVEC;
             }
 
-            union int8 union_finalbin;
-            union float8 union_msep;
-            union float8_weights union_mweight;
+            union avxint union_finalbin;
+            union avxfloat union_msep;
+            union avxfloat_weights union_mweight;
 
             const AVX_FLOATS m_perpx = AVX_SUBTRACT_FLOATS(m_x2, m_xpos);
             const AVX_FLOATS m_perpy = AVX_SUBTRACT_FLOATS(m_y2, m_ypos);
@@ -1076,9 +1077,9 @@ static inline int countpairs_s_mu_mocks_sse_intrinsics_DOUBLE(const int64_t N0, 
                 local_w1.weights[w] += SSE_NVEC;
             }
 
-            union int4 union_finalbin;
-            union float4 union_msep;
-            union float4_weights union_mweight;
+            union sseint union_finalbin;
+            union ssefloat union_msep;
+            union ssefloat_weights union_mweight;
 
             const SSE_FLOATS m_perpx = SSE_SUBTRACT_FLOATS(m_x2, m_xpos);
             const SSE_FLOATS m_perpy = SSE_SUBTRACT_FLOATS(m_y2, m_ypos);

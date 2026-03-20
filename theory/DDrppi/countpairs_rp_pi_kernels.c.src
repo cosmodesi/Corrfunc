@@ -185,9 +185,9 @@ static inline int countpairs_rp_pi_avx512_intrinsics_DOUBLE(const int64_t N0, DO
             localy1 += AVX512_NVEC;
             localz1 += AVX512_NVEC;
 
-            union int16 union_finalbin;
-            union float16 union_mDperp;
-            union float16_weights union_mweight;
+            union avx512int union_finalbin;
+            union avx512float union_mDperp;
+            union avx512float_weights union_mweight;
 
             for(int w = 0; w < pair.num_weights; w++){
                 pair.weights1[w].a512 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, local_w1.weights[w]);
@@ -481,9 +481,9 @@ static inline int countpairs_rp_pi_avx_intrinsics_DOUBLE(const int64_t N0, DOUBL
             const AVX_FLOATS m_zpos    = AVX_SET_FLOAT(zpos);
             const AVX_FLOATS m_norm0   = AVX_SET_FLOAT(norm0);
 
-            union int8 union_finalbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_finalbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             const AVX_FLOATS m_x1 = AVX_LOAD_FLOATS_UNALIGNED(localx1);
             const AVX_FLOATS m_y1 = AVX_LOAD_FLOATS_UNALIGNED(localy1);
@@ -868,8 +868,8 @@ static inline int countpairs_rp_pi_sse_intrinsics_DOUBLE(const int64_t N0, DOUBL
 
         for(;j<=(N1 - SSE_NVEC);j+=SSE_NVEC){
 
-            union int4 union_finalbin;
-            union float4 union_mDperp;
+            union sseint union_finalbin;
+            union ssefloat union_mDperp;
 
             const SSE_FLOATS m_xpos = SSE_SET_FLOAT(xpos);
             const SSE_FLOATS m_ypos = SSE_SET_FLOAT(ypos);
@@ -895,11 +895,11 @@ static inline int countpairs_rp_pi_sse_intrinsics_DOUBLE(const int64_t N0, DOUBL
                 local_w1.weights[w] += SSE_NVEC;
             }
 
-            union float4_weights{
+            union ssefloat_weights{
                 SSE_FLOATS m_weights;
                 DOUBLE weights[SSE_NVEC];
             };
-            union float4_weights union_mweight;
+            union ssefloat_weights union_mweight;
 
             const SSE_FLOATS m_pimax = SSE_SET_FLOAT((DOUBLE) pimax);
             const SSE_FLOATS m_sqr_rpmax = m_rupp_sqr[nbin-1];

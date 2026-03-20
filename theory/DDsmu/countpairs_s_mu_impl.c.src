@@ -26,6 +26,7 @@
 #include "gridlink_utils_DOUBLE.h" //for associated helper routines
 
 #ifdef GPU
+#include <cuda_runtime.h>
 #include "countpairs_s_mu_gpu.h"
 #endif
 
@@ -576,7 +577,7 @@ int countpairs_s_mu_DOUBLE(const int64_t ND1, DOUBLE *X1, DOUBLE *Y1, DOUBLE *Z1
                 gpu_start_idx1[icell] = pcount2;
                 pcount1 += (&lattice1[icell])->nelements;
                 pcount2 += (&lattice2[icell])->nelements;
- 
+
                 this_cell_threads = (&lattice1[icell])->nelements * (&lattice2[icell])->nelements;
                 nblocks = (this_cell_threads+THREADS_PER_BLOCK-1)/THREADS_PER_BLOCK;
                 if (nblocks > max_blocks) {

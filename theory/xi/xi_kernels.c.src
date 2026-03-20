@@ -161,9 +161,9 @@ static inline int xi_avx512_intrinsics_DOUBLE(DOUBLE *x1, DOUBLE *y1, DOUBLE *z1
             const AVX512_FLOATS m_y2 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, localy2);
             const AVX512_FLOATS m_z2 = AVX512_MASKZ_LOAD_FLOATS_UNALIGNED(m_mask_left, localz2);
 
-            union int16 union_rpbin;
-            union float16 union_mDperp;
-            union float16_weights union_mweight;
+            union avx512int union_rpbin;
+            union avx512float union_mDperp;
+            union avx512float_weights union_mweight;
 
             union_rpbin.m_ibin = AVX512_SETZERO_INT();
             union_mDperp.m_Dperp = AVX512_SETZERO_FLOAT();
@@ -435,9 +435,9 @@ static inline int xi_avx_intrinsics_DOUBLE(DOUBLE *x1, DOUBLE *y1, DOUBLE *z1, c
             const AVX_FLOATS m_ypos    = AVX_SET_FLOAT(ypos);
             const AVX_FLOATS m_zpos    = AVX_SET_FLOAT(zpos);
 
-            union int8 union_rbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_rbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             const AVX_FLOATS m_x2 = AVX_LOAD_FLOATS_UNALIGNED(localx2);
             const AVX_FLOATS m_y2 = AVX_LOAD_FLOATS_UNALIGNED(localy2);
@@ -769,9 +769,9 @@ static inline int xi_sse_intrinsics_DOUBLE(DOUBLE *x0, DOUBLE *y0, DOUBLE *z0, c
                 local_w1.weights[w] += SSE_NVEC;
             }
 
-            union int4 union_rbin;
-            union float4 union_mDperp;
-            union float4_weights union_mweight;
+            union sseint union_rbin;
+            union ssefloat union_mDperp;
+            union ssefloat_weights union_mweight;
 
             const SSE_FLOATS m_max_dz = SSE_SET_FLOAT(max_dz);
       			const SSE_FLOATS m_sqr_rmax = SSE_SET_FLOAT(sqr_rmax);

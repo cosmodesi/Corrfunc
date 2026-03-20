@@ -29,6 +29,7 @@
 #include "countpairs_s_mu_mocks_kernels_DOUBLE.c"
 
 #ifdef GPU
+#include <cuda_runtime.h>
 #include "countpairs_s_mu_mocks_gpu.h"
 #endif
 

@@ -19,6 +19,7 @@
 #include "weight_functions_DOUBLE.h"
 
 #ifdef GPU
+#include <cuda_runtime.h>
 #include "countpairs_s_mu_gpu.h"
 #endif
 
@@ -210,9 +211,9 @@ static inline int countpairs_s_mu_avx512_intrinsics_DOUBLE(const int64_t N0, DOU
                 local_w1.weights[w] += AVX512_NVEC;
             }
 
-            union int16 union_finalbin;
-            union float16 union_mDperp;
-            union float16_weights union_mweight;
+            union avx512int union_finalbin;
+            union avx512float union_mDperp;
+            union avx512float_weights union_mweight;
 
             const AVX512_FLOATS m_max_dz = AVX512_SET_FLOAT(max_dz);
             const AVX512_FLOATS m_sqr_smax = m_supp_sqr[nsbin-1];
@@ -552,9 +553,9 @@ static inline int countpairs_s_mu_avx_intrinsics_DOUBLE(const int64_t N0, DOUBLE
                 pair.weights1[w].a = AVX_LOAD_FLOATS_UNALIGNED(local_w1.weights[w]);
                 local_w1.weights[w] += AVX_NVEC;
             }
-            union int8 union_finalbin;
-            union float8 union_mDperp;
-            union float8_weights union_mweight;
+            union avxint union_finalbin;
+            union avxfloat union_mDperp;
+            union avxfloat_weights union_mweight;
 
             const AVX_FLOATS m_max_dz = AVX_SET_FLOAT(max_dz);
             const AVX_FLOATS m_sqr_smax = m_supp_sqr[nsbin-1];
@@ -990,9 +991,9 @@ static inline int countpairs_s_mu_sse_intrinsics_DOUBLE(const int64_t N0, DOUBLE
                 local_w1.weights[w] += SSE_NVEC;
             }
 
-            union int4 union_finalbin;
-            union float4 union_mDperp;
-            union float4_weights union_mweight;
+            union sseint union_finalbin;
+            union ssefloat union_mDperp;
+            union ssefloat_weights union_mweight;
 
             const SSE_FLOATS m_max_dz = SSE_SET_FLOAT(max_dz);
             const SSE_FLOATS m_sqr_smax = m_supp_sqr[nsbin-1];

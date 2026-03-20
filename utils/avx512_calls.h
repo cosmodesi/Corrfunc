@@ -390,16 +390,16 @@ static inline AVX512_FLOATS inv_cosine_avx512(const AVX512_FLOATS X, const int o
   extern const int64_t bits_set_in_avx512_mask_double[];
   extern const uint8_t masks_per_misalignment_value_double[];
 
-  union int16 {
+  union avx512int {
     AVX512_INTS m_ibin;
     int ibin[AVX512_NVEC];
   };
-  union float16{
+  union avx512float{
     AVX512_FLOATS m_Dperp;
     DOUBLE Dperp[AVX512_NVEC];
   };
 
-  union float16_weights{
+  union avx512float_weights{
     AVX512_FLOATS m_weights;
     DOUBLE weights[AVX512_NVEC];
   };
