@@ -43,7 +43,7 @@ endif
 ## Set the python command (supply the full path to python you want to
 ## use, if different from directly calling `python` on the shell,
 ## as can be the case if python is set via an alias)
-PYTHON:=/global/common/software/desi/users/adematti/perlmutter/cosmodesiconda/20260321-1.0.0/conda/bin/python3.12
+PYTHON:=python
 
 ## Important note -> if you directly call /some/path/to/python
 ## then the previous two variables will be updated to point
