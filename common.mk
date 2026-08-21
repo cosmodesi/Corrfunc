@@ -16,7 +16,7 @@ CFLAGS ?=
 #### Add any compiler specific link flags you want
 CLINK ?=
 
-CUFLAGS := -ccbin gcc -m64 -gencode arch=compute_60,code=sm_60  -gencode arch=compute_61,code=sm_61 -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -Xcompiler -Ofast --compiler-options '-fPIC' -I../../io -I../../utils -c
+CUFLAGS := -ccbin gcc -m64  -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -Xcompiler -Ofast --compiler-options '-fPIC' -I../../io -I../../utils -c
 
 USE_GPU ?= -1
 ifeq ($(USE_GPU), -1)
@@ -36,14 +36,14 @@ ifeq ($(USE_GPU), 1)
       $(info Else set $(ccblue)"USE_GPU=0"$(ccreset))
       $(error )
   endif
-  CLINK += -L$(CUDA_HOME)/lib64 -lcudart
+  CLINK += -L$(CUDA_HOME)/lib64 -lcudart -lstdc++
   CUDA_INCLUDE := $(CUDA_HOME)/include
 endif
 
 ## Set the python command (supply the full path to python you want to
 ## use, if different from directly calling `python` on the shell,
 ## as can be the case if python is set via an alias)
-PYTHON:=python
+PYTHON:=/global/common/software/desi/users/adematti/perlmutter/cosmodesiconda/20260321-1.0.0/conda/bin/python3.12
 
 ## Important note -> if you directly call /some/path/to/python
 ## then the previous two variables will be updated to point
